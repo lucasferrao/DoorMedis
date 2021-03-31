@@ -23,8 +23,8 @@ function read(req, res) {
 
 //Ler dados de uma farmacia através do seu ID (GET)
 function readID(req, res) {
-    const id_estafeta = req.sanitize('id').escape();
-    const post = { id_estafeta: id_estafeta };
+    const id_farmacia = req.sanitize('id').escape();
+    const post = { id_farmacia: id_farmacia };
     const query = connect.con.query('SELECT * FROM farmacia WHERE id_farmacia = ?', post, function(err, rows, fields) { 
         console.log(query.sql);
         if (err) {
