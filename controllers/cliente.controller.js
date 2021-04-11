@@ -1,6 +1,6 @@
-//const jsonMessagesPath = "../assets/jsonMessages/";
-//const jsonMessages = require(jsonMessagesPath + "bd");
-//const connect = require('../config/connectMySQL');
+const jsonMessagesPath = "../assets/jsonMessages/";
+const jsonMessages = require(jsonMessagesPath + "bd");
+const connect = require('../config/connectMySQL');
 
 //Ler dados de um cliente (GET)
 function read(req, res) {
@@ -47,16 +47,16 @@ function save(req, res) {
     const nome = req.sanitize('nome').escape();
     const contacto = req.sanitize('contacto').escape();
     const email = req.sanitize('email').escape();
-    const password = req.sanitize('password').escape();
+    const cliente_password = req.sanitize('cliente_password').escape();
     const morada = req.sanitize('morada').escape();
     const nif = req.sanitize('nif').escape();
-    const ativo = 0; 
+    //const ativo = 0; 
     var query = "";
     //Validations
     req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("contacto", "Insira apenas números.").matches(/^[0-9]+$/i);
     req.checkBody("email", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("cliente_password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("nif", "Insira apenas números.").matches(/^[0-9]+$/i);
     const errors = req.validationErrors();
@@ -65,12 +65,12 @@ function save(req, res) {
         return;
     }
     else {
-        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && password != "NULL" && morada != "NULL" && nif != "NULL" && ativo != "NULL") {
+        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && cliente_password != "NULL" && morada != "NULL" && nif != "NULL") {
             var post = { 
                 nome: nome, 
                 contacto: contacto, 
                 email: email,
-                password: password,
+                password: cliente_password,
                 morada: morada,
                 nif: nif,    
             };
@@ -99,26 +99,26 @@ function update(req, res) {
     const nome = req.sanitize('nome').escape();
     const contacto = req.sanitize('contacto').escape();
     const email = req.sanitize('email').escape();
-    const password = req.sanitize('password').escape();
+    const cliente_password = req.sanitize('cliente_password').escape();
     const morada = req.sanitize('morada').escape();
     const nif = req.sanitize('nif').escape();
-    const ativo = req.sanitize('ativo').escape();
+    //const ativo = req.sanitize('ativo').escape();
     //Validations
     req.checkParams("id_cliente", "Insira o id de cliente válido.").matches(/^[0-9]+$/i);
     req.checkBody("contacto", "Insira apenas números.").matches(/^[0-9]+$/i);
     req.checkBody("email", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("cliente_password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("nif", "Insira apenas números.").matches(/^[0-9]+$/i);
-    req.checkBody("ativo", "Escolha apenas uma opção.").matches(/^[0-1]+$/i);
+    //req.checkBody("ativo", "Escolha apenas uma opção.").matches(/^[0-1]+$/i);
     const errors = req.validationErrors();
     if (errors) {
         res.send(errors);
         return;
     }
     else {
-        if (id_cliente != "NULL" && nome != "NULL" && contacto != "NULL" && email != "NULL" && password != "NULL" && morada != "NULL" && nif != "NULL" && ativo != "NULL") {
-            const update = [id_cliente, nome, contacto, email, password, morada, nif, ativo];
+        if (id_cliente != "NULL" && nome != "NULL" && contacto != "NULL" && email != "NULL" && cliente_password != "NULL" && morada != "NULL" && nif != "NULL" /*&& ativo != "NULL"*/) {
+            const update = [id_cliente, nome, contacto, email, cliente_password, morada, nif/*, ativo*/];
             const query = connect.con.query('UPDATE cliente SET ? WHERE id_cliente=?', update, function(err, rows, fields) {
                 console.log(query.sql);
                 if (!err) {
@@ -136,6 +136,7 @@ function update(req, res) {
     }
 }
 
+/*
 //Delete Lógico (PUT)
 function deleteL(req, res) {
     const update = [0, req.sanitize('id').escape()];
@@ -150,6 +151,7 @@ function deleteL(req, res) {
         }
     });
 }
+*/
 
 //Delete físico (DELETE)
 function deleteP(req, res) {
@@ -171,6 +173,6 @@ module.exports = {
     readID: readID,
     save: save,
     update: update,
-    deleteL: deleteL,
+    //deleteL: deleteL,
     deleteP: deleteP,
 };

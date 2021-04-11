@@ -4,6 +4,7 @@ const app = require('../server');
 //Evoke all needed controllers
 const controllerCliente = 
     require('../controllers/cliente.controller.js');
+/*    
 const controllerEncomenda = 
     require('../controllers/encomenda.controller.js');
 const controllerEstafeta = 
@@ -16,6 +17,7 @@ const controllerProduto =
     require('../controllers/produto.controller.js');
 const controllerStock = 
     require('../controllers/stock.controller.js');
+*/    
 
 
 //Default route
@@ -28,11 +30,13 @@ app.get('/', function(req, res) {
  //Cliente
  app.get('/clientes/', controllerCliente.read);
  app.get('/clientes/:id', controllerCliente.readByID);
- app.post('/clientes/', isLoggedIn, controllerCliente.save);
- app.put('/clientes/:id', isLoggedIn, isLoggedIn, controllerCliente.update);
- app.put('/clientes/del/:id', isLoggedIn, controllerCliente.deleteL);
- app.delete('/clientes/:id', isLoggedIn, controllerCliente.deleteP);
-
+ app.post('/clientes/', /*isLoggedIn,*/ controllerCliente.save);
+ app.put('/clientes/:id',/*isLoggedIn,*/ /*isLoggedIn,*/ controllerCliente.update);
+ //app.put('/clientes/del/:id',/*isLoggedIn,*/ controllerCliente.deleteL);
+ app.delete('/clientes/:id',/*isLoggedIn,*/ controllerCliente.deleteP);
+ 
+ module.exports = app;
+/*
  //Encomenda
  app.get('/encomendas/', controllerEncomenda.read);
  app.get('/encomendas/:id', controllerEncomenda.readByID);
@@ -73,7 +77,7 @@ app.get('/carrinhos/:id', controllerCarrinho.readByID);
 app.post('/carrinhos/', controllerCarrinho.save);
 app.put('/carrinhos/:id', controllerCarrinho.update);
 
-module.exports = app;
+
 
 //Verify if a user is logged in
 function isLoggedIn(req, res, next) {
@@ -84,4 +88,5 @@ function isLoggedIn(req, res, next) {
         res.status(jsonMessages.login.unauthorized.status).send(jsonMessages.login.unauthorized);
         return next();
     }
-}
+}*/
+
