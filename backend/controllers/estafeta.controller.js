@@ -1,6 +1,6 @@
-//const jsonMessagesPath = "../assets/jsonMessages/";
-//const jsonMessages = require(jsonMessagesPath + "bd");
-//const connect = require('../config/connectMySQL');
+const jsonMessagesPath = "../assets/jsonMessages/";
+const jsonMessages = require(jsonMessagesPath + "bd");
+const connect = require('../config/connectMySQL');
 
 //Ler dados de um estafeta (GET)
 function read(req, res) {
@@ -47,19 +47,19 @@ function save(req, res) {
     const nome = req.sanitize('nome').escape();
     const contacto = req.sanitize('contacto').escape();
     const email = req.sanitize('email').escape();
-    const password = req.sanitize('password').escape();
+    const estafeta_password = req.sanitize('estafeta_password').escape();
     //const morada = req.sanitize('morada').escape();
     const avaliacao = req.sanitize('avaliacao').escape();
     const nif = req.sanitize('nif').escape();
-    const ativo = 0; 
+    //const ativo = 0; 
     var query = "";
     //Validations
     req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("contacto", "Insira apenas números.").matches(/^[0-9]+$/i);
     req.checkBody("email", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("estafeta_password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     //req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("avaliacao", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("avaliacao", "Insira apenas números.").matches(/^[0-9]+$/i);
     req.checkBody("nif", "Insira apenas números.").matches(/^[0-9]+$/i);
     const errors = req.validationErrors();
     if (errors) {
@@ -67,12 +67,12 @@ function save(req, res) {
         return;
     }
     else {
-        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && password != "NULL" && /*morada != "NULL" && */ avaliacao != "NULL" && nif != "NULL" && ativo != "NULL") {
+        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && estafeta_password != "NULL" && /*morada != "NULL" && */ avaliacao != "NULL" && nif != "NULL" /*&& ativo != "NULL"*/) {
             var post = { 
                 nome: nome, 
                 contacto: contacto, 
                 email: email,
-                password: password,
+                estafeta_password: estafeta_password,
                 //morada: morada,
                 avaliacao: avaliacao,
                 nif: nif,    

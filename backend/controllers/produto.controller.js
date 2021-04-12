@@ -1,6 +1,6 @@
-//const jsonMessagesPath = "../assets/jsonMessages/";
-//const jsonMessages = require(jsonMessagesPath + "bd");
-//const connect = require('../config/connectMySQL');
+const jsonMessagesPath = "../assets/jsonMessages/";
+const jsonMessages = require(jsonMessagesPath + "bd");
+const connect = require('../config/connectMySQL');
 
 //Ler dados de um produto (GET)
 function read(req, res) {
@@ -46,23 +46,23 @@ function readID(req, res) {
 function save(req, res) {
     const nome = req.sanitize('nome').escape();
     const descricao = req.sanitize('descricao').escape();
-    const receitaMedica = req.sanitize('email').escape();
+    const receita_medica = req.sanitize('receita_medica').escape();
     var query = "";
     //Validations
     req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("descricao", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);  
-    req.checkBody("receitaMedica", "Escolha apenas uma opção.").matches(/^[0-1]+$/i);
+    req.checkBody("receita_medica", "Escolha apenas uma opção.").matches(/^[0-1]+$/i);
     const errors = req.validationErrors();
     if (errors) {
         res.send(errors);
         return;
     }
     else {
-        if (nome != "NULL" && descricao != "NULL" && receitaMedica != "NULL") {
+        if (nome != "NULL" && descricao != "NULL" && receita_medica != "NULL") {
             var post = { 
                 nome: nome, 
                 descricao: descricao, 
-                receitaMedica: receitaMedica,   
+                receita_medica: receita_medica,   
             };
             //Create & Execute a query on database to insert present data from post
             query = connect.con.query('INSERT INTO produto SET ?', post, function(err, rows, fields) {

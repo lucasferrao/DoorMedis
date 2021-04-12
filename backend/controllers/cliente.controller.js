@@ -53,24 +53,24 @@ function save(req, res) {
     //const ativo = 0; 
     var query = "";
     //Validations
-    req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-z]+$/i);
     req.checkBody("contacto", "Insira apenas números.").matches(/^[0-9]+$/i);
-    req.checkBody("email", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("cliente_password", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
-    req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
+    req.checkBody("email", "Por favor, introduza texto.").matches(/^[a-z]+$/i);
+    req.checkBody("cliente_password", "Por favor, introduza texto.").matches(/^[a-z]+$/i);
+    req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-z]+$/i);
     req.checkBody("nif", "Insira apenas números.").matches(/^[0-9]+$/i);
     const errors = req.validationErrors();
     if (errors) {
         res.send(errors);
         return;
-    }
-    else {
+    } 
+    else { 
         if (nome != "NULL" && contacto != "NULL" && email != "NULL" && cliente_password != "NULL" && morada != "NULL" && nif != "NULL") {
             var post = { 
                 nome: nome, 
                 contacto: contacto, 
                 email: email,
-                password: cliente_password,
+                cliente_password: cliente_password,
                 morada: morada,
                 nif: nif,    
             };

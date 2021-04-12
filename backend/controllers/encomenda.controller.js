@@ -1,6 +1,6 @@
-//const jsonMessagesPath = "../assets/jsonMessages/";
-//const jsonMessages = require(jsonMessagesPath + "bd");
-//const connect = require('../config/connectMySQL');
+const jsonMessagesPath = "../assets/jsonMessages/";
+const jsonMessages = require(jsonMessagesPath + "bd");
+const connect = require('../config/connectMySQL');
 
 //Ler dados de uma encomenda (GET)
 function read(req, res) {
