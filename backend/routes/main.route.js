@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
  app.get('/clientes/:id', controllerCliente.readID);
  app.post('/clientes/', /*isLoggedIn,*/ controllerCliente.save);
  app.put('/clientes/:id',/*isLoggedIn,*/ /*isLoggedIn,*/ controllerCliente.update);
- //app.put('/clientes/del/:id',/*isLoggedIn,*/ controllerCliente.deleteL);
+ app.put('/clientes/del/:id',/*isLoggedIn,*/ controllerCliente.deleteL);
  app.delete('/clientes/:id',/*isLoggedIn,*/ controllerCliente.deleteP);
 
  //Encomenda
@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
  app.get('/estafetas/:id', controllerEstafeta.readID);
  app.post('/estafetas/',/* isLoggedIn,*/ controllerEstafeta.save);
  app.put('/estafetas/:id',/* isLoggedIn, isLoggedIn,*/ controllerEstafeta.update);
- //app.put('/estafetas/del/:id', isLoggedIn, controllerEstafeta.deleteL);
+ app.put('/estafetas/del/:id', /*isLoggedIn,*/ controllerEstafeta.deleteL);
  app.delete('/estafetas/:id',/* isLoggedIn,*/ controllerEstafeta.deleteP);
 
  //Farmácia
@@ -49,7 +49,7 @@ app.get('/', function(req, res) {
  app.get('/farmacias/:id', controllerFarmacia.readID);
  app.post('/farmacias/',/* isLoggedIn,*/ controllerFarmacia.save);
  app.put('/farmacias/:id',/* isLoggedIn, isLoggedIn,*/ controllerFarmacia.update);
- //app.put('/farmacias/del/:id', isLoggedIn, controllerFarmacia.deleteL);
+ app.put('/farmacias/del/:id', /*isLoggedIn,*/ controllerFarmacia.deleteL);
  app.delete('/farmacias/:id',/* isLoggedIn,*/ controllerFarmacia.deleteP);
 
  //Produto

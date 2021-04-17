@@ -85,11 +85,11 @@ function save(req, res) {
 
 //Atualizar um stock (PUT)
 function update(req, res) {
-    const id_stock = req.sanitize('id_stock').escape();
     const quantidade = req.sanitize('quantidade').escape();
+    const id_stock = req.sanitize('id_stock').escape();
     //Validations
-    req.checkParams("id_stock", "Insira o id de farmacia válido.").matches(/^[0-9]+$/i);
     req.checkBody("quantidade", "Insira apenas números.").matches(/^[0-9]+$/i);
+    req.checkParams("id_stock", "Insira o id de stock válido.").isNumeric();
     const errors = req.validationErrors();
     if (errors) {
         res.send(errors);
@@ -119,5 +119,5 @@ module.exports = {
     read: read,
     readID: readID,
     save: save,
-    update: update,
+    update: update
 };

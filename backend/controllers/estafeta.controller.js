@@ -51,7 +51,7 @@ function save(req, res) {
     //const morada = req.sanitize('morada').escape();
     const avaliacao = req.sanitize('avaliacao').escape();
     const nif = req.sanitize('nif').escape();
-    //const ativo = 0; 
+    const ativo = 0; 
     var query = "";
     //Validations
     req.checkBody("nome", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
@@ -61,13 +61,14 @@ function save(req, res) {
     //req.checkBody("morada", "Por favor, introduza texto.").matches(/^[a-zA-Z0-9&@.$%\-,():;` ]+$/);
     req.checkBody("avaliacao", "Insira apenas números.").matches(/^[0-9]+$/i);
     req.checkBody("nif", "Insira apenas números.").matches(/^[0-9]+$/i);
+    req.checkBody("ativo", "Escolha apenas uma opção.").matches(/^[0-1]+$/i);
     const errors = req.validationErrors();
     if (errors) {
         res.send(errors);
         return;
     }
     else {
-        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && estafeta_password != "NULL" && /*morada != "NULL" && */ avaliacao != "NULL" && nif != "NULL" /*&& ativo != "NULL"*/) {
+        if (nome != "NULL" && contacto != "NULL" && email != "NULL" && estafeta_password != "NULL" && /*morada != "NULL" && */ avaliacao != "NULL" && nif != "NULL" && ativo != "NULL") {
             var post = { 
                 nome: nome, 
                 contacto: contacto, 
@@ -76,6 +77,7 @@ function save(req, res) {
                 //morada: morada,
                 avaliacao: avaliacao,
                 nif: nif,    
+                ativo: ativo 
             };
             //Create & Execute a query on database to insert present data from post
             query = connect.con.query('INSERT INTO estafeta SET ?', post, function(err, rows, fields) {
