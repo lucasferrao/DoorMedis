@@ -45,10 +45,45 @@ function getRefreshToken(){
     moloni_access_token = json[0]["access_token"];
     moloni_refresh_token = json[0]["refresh_token"];
     console.log("moloni_access_token: " + moloni_access_token + " moloni_refresh_token: " + moloni_refresh_token);
-    }
+}
+
+async function getMedicamentoMoloni(medicamento){
+    let token = await getTokenMoloni();
+    var estado = true;
+    var options = {
+        method: 'POST',
+        url: 'https://api.moloni.pt/v1/customerAlternateAddresses/getAll/?access_token='+ token,
+        headers: {
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            company_id: '179319',
+            customer_id: '26628724'
+        }
+    };
+    return new Promise(function (resolve, reject) {
+        request(options, function(error, response, body) {
+            var medicamentoMoloni;
+            if (!error && response.statusCode == 200) {
+                var dados = JSON.parse(response.body);
+                for (var i = 0; i < dados.length; i++) {
+                    if(dados[i].code == medicamento){
+                        medicamentoMoloni = dados[i].address_id;
+                    }
+                }
+                resolve(medicamentoMoloni);
+            } else {
+                reject(error);
+            };
+        });
+    });
+}
 
 
 module.exports = {
+    getTokenMoloni: getTokenMoloni,
     getToken: getToken,
-    getRefreshToken: getRefreshToken
+    getRefreshToken: getRefreshToken,
+    getMedicamentoMoloni: getMedicamentoMoloni
 }

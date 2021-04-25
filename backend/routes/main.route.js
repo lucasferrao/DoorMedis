@@ -1,7 +1,7 @@
 //Application routes
 //app require
 const app = require('../server');
-const auth = require("../../middleware/auth");
+const auth = require("../middleware/auth");
 //Evoke all needed controllers
 const controllerCliente = 
     require('../controllers/cliente.controller.js');
