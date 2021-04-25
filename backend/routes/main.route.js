@@ -1,6 +1,7 @@
 //Application routes
 //app require
 const app = require('../server');
+const auth = require("../../middleware/auth");
 //Evoke all needed controllers
 const controllerCliente = 
     require('../controllers/cliente.controller.js');
@@ -14,6 +15,12 @@ const controllerProduto =
     require('../controllers/produto.controller.js');
 const controllerStock = 
     require('../controllers/stock.controller.js');
+const controllerJasmin = 
+    require('../controllers/jasmin.controller.js');
+const controllerMoloni = 
+    require('../controllers/moloni.controller.js');
+const controllerHubspot = 
+    require('../controllers/hubspot.controller.js');    
 
     //Default route
 app.get('/', function(req, res) {
@@ -63,6 +70,17 @@ app.get('/', function(req, res) {
  app.get('/stocks/:id', controllerStock.readID);
  app.post('/stocks/', controllerStock.save);
  app.put('/stocks/:id', controllerStock.update);
+
+ //Jasmin
+ app.get('/getToken/', controllerJasmin.getTokenJasmin);
+
+
+ //Moloni
+ app.post('/moloniGetToken/',controllerMoloni.getToken);
+ app.post('/moloniGetRefreshToken/',controllerMoloni.getRefreshToken);
+ 
+
+ //Hubspot
 
 
 //Verify if a user is logged in
