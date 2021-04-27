@@ -2,6 +2,7 @@ var request = require('request');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var moloni_access_token;
 var moloni_refresh_token;
+var companyID = '179319';
 
 function getTokenMoloni() {
     var url = 'https://api.moloni.pt/v1/grant/?grant_type=password&client_id=doormedis&client_secret=9b83a502ef2b0a8733192c45fcfdf9dea9d4fc6c&username=a89262@alunos.uminho.pt&password=isi2021';
@@ -15,6 +16,7 @@ function getTokenMoloni() {
             moloni_refresh_token = t.refresh_token;
             if (!error && res.statusCode == 200) {
                 resolve(moloni_access_token);
+                console.log(moloni_access_token);
             //resp.send(JSON.parse(body))
             } else {
                 reject(error);
@@ -23,56 +25,121 @@ function getTokenMoloni() {
     });
 }
 
-function getToken() {
-    var url = "https://api.moloni.pt/v1/grant/?grant_type=password&client_id=doormedis&client_secret=9b83a502ef2b0a8733192c45fcfdf9dea9d4fc6c&username=a89262@alunos.uminho.pt&password=isi2021";
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false); // false for synchronous request
-    xmlHttp.send(null);
-    var jsonStructure = '[' + xmlHttp.responseText + ']';
-    var json = JSON.parse(jsonStructure);
-    moloni_access_token = json[0]["access_token"];
-    moloni_refresh_token = json[0]["refresh_token"];
-    console.log("moloni_access_token: " + moloni_access_token + " moloni_refresh_token: " + moloni_refresh_token);
-}
-    
-function getRefreshToken(){
-    var url = "https://api.moloni.pt/v1/grant/?grant_type=refresh_token&client_id=Food2Go&client_secret=9f08bc1bcd476408f09d152a6f04947c1eae9515&refresh_token=" + moloni_refresh_token;
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", url, false); // false for synchronous request
-    xmlHttp.send(null);
-    var jsonStructure = '[' + xmlHttp.responseText + ']';
-    var json = JSON.parse(jsonStructure);
-    moloni_access_token = json[0]["access_token"];
-    moloni_refresh_token = json[0]["refresh_token"];
-    console.log("moloni_access_token: " + moloni_access_token + " moloni_refresh_token: " + moloni_refresh_token);
+function getToken(callback) {
+    let options = {
+        url: 'https://api.moloni.pt/v1/grant/?grant_type=password&client_id=doormedis&client_secret=9b83a502ef2b0a8733192c45fcfdf9dea9d4fc6c&username=a89262@alunos.uminho.pt&password=isi2021'
+    }
+        request.get(options, (err, res) => {
+         if(!err && res.statusCode == 200) {
+             callback({
+                 'access_token': JSON.parse(res.body).access_token
+             });
+         } else {
+             callback({
+                 'statusCode': res.statusCode,
+                 'body': JSON.parse(res.body)
+             })
+         }
+     } 
+     ) 
 }
 
-async function getMedicamentoMoloni(medicamento){
-    let token = await getTokenMoloni();
-    var estado = true;
+function getCompany(){
+
+}
+
+async function getFornecedor(fornecedor){
+    let token = await getToken();
     var options = {
         method: 'POST',
-        url: 'https://api.moloni.pt/v1/customerAlternateAddresses/getAll/?access_token='+ token,
+        url: 'https://api.moloni.pt/v1/suppliers/getAll/?access_token=' + token,
         headers: {
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded'
         },
         form: {
             company_id: '179319',
-            customer_id: '26628724'
+            qty: '50',
+            offset: '0'
         }
     };
+
     return new Promise(function (resolve, reject) {
         request(options, function(error, response, body) {
-            var medicamentoMoloni;
+            var fornecedorID;
             if (!error && response.statusCode == 200) {
                 var dados = JSON.parse(response.body);
                 for (var i = 0; i < dados.length; i++) {
-                    if(dados[i].code == medicamento){
-                        medicamentoMoloni = dados[i].address_id;
+                    if(dados[i].code == fornecedor){
+                        fornecedorID = dados[i].address_id;
                     }
                 }
-                resolve(medicamentoMoloni);
+                resolve(fornecedorID);
+            } else {
+                reject(error);
+            };
+        });
+    });
+}
+
+async function getCategorias(categoria){
+    let token = await getToken();
+    var options = {
+        method: 'POST',
+        url: 'https://api.moloni.pt/v1/productCategories/getAll/?access_token=' + token,
+        headers: {
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            company_id: '179319',
+            parent_id: '0'
+        }
+    };
+
+    return new Promise(function (resolve, reject) {
+        request(options, function(error, response, body) {
+            var categoriaID;
+            if (!error && response.statusCode == 200) {
+                var dados = JSON.parse(response.body);
+                for (var i = 0; i < dados.length; i++) {
+                    if(dados[i].code == categoria){
+                        categoriaID = dados[i].address_id;
+                    }
+                }
+                resolve(categoriaID);
+            } else {
+                reject(error);
+            };
+        });
+    });
+}
+
+async function gerarFaturaFornecedor(encomenda,maquinhaIDmoloni){
+    let token = await getTokenMoloni();
+    var estado = true;
+    var options = {
+        method: 'POST',
+        url: 'https://api.moloni.pt/v1/invoiceReceipts/insert/?access_token='+ token,
+        headers: {
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            company_id: '179319',
+            date: new Date().toISOString(),
+            document_set_id: 275975,     // --------------------- PRECISA SER MUDADO ------------------------
+            customer_id: 26628724,      // --------------------- PRECISA SER MUDADO ------------------------
+            alternate_address_id: maquinhaIDmoloni,
+            status: 0,
+            products: encomenda
+        }
+    };
+
+    return new Promise(function (resolve, reject) {
+        request(options, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                resolve(true);
             } else {
                 reject(error);
             };
@@ -81,9 +148,45 @@ async function getMedicamentoMoloni(medicamento){
 }
 
 
+async function gerarEncomenda(encomenda,maquinhaIDmoloni){ //MUDIFICAR PARAMETROS 
+    let token = await getTokenMoloni();
+    var estado = true;
+    var options = {
+        method: 'POST',
+        url: 'https://api.moloni.pt/v1/supplierPurchaseOrder/getAll/?access_token='+ token,
+        headers: {
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+            company_id: '179319',
+            date: new Date().toISOString(),
+            document_set_id: 275975,     // --------------------- PRECISA SER MUDADO ------------------------
+            customer_id: 26628724,      // --------------------- PRECISA SER MUDADO ------------------------
+            alternate_address_id: maquinhaIDmoloni,
+            status: 0,
+            products: encomenda
+        }
+    };
+
+    return new Promise(function (resolve, reject) {
+        request(options, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                resolve(true);
+            } else {
+                reject(error);
+            };
+        });
+    });
+}
+
+
+
+
 module.exports = {
     getTokenMoloni: getTokenMoloni,
     getToken: getToken,
-    getRefreshToken: getRefreshToken,
-    getMedicamentoMoloni: getMedicamentoMoloni
+    getFornecedor: getFornecedor,
+    getCategorias: getCategorias,
+    
 }

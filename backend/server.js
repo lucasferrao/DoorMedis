@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
     next(); // <-- important!
 });
 
-
+/*
 // Build the auth URL
 const authUrl =
   'https://app.hubspot.com/oauth/authorize' +
@@ -68,7 +68,7 @@ app.use((req, res, next) => {
         return res.status(200).json({});
     }
     next();
-});
+});*/
 
 //express-sessions code
 module.exports = app;

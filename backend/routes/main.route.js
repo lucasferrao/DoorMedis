@@ -76,8 +76,8 @@ app.get('/', function(req, res) {
 
 
  //Moloni
- app.post('/moloniGetToken/',controllerMoloni.getToken);
- app.post('/moloniGetRefreshToken/',controllerMoloni.getRefreshToken);
+ app.post('/getToken/',controllerMoloni.getToken);
+ app.post('/getFornecedor/',controllerMoloni.getFornecedor);
  
 
  //Hubspot
