@@ -72,16 +72,17 @@ app.get('/', function(req, res) {
  app.put('/stocks/:id', controllerStock.update);
 
  //Jasmin
- app.get('/getToken/', controllerJasmin.getTokenJasmin);
+ app.post('/jasminGetToken/', controllerJasmin.obterTokenJasmin);
+ //app.post('/jasminArtigosInventario/', controllerJasmin.obterArtigosInventario);
 
 
  //Moloni
- app.post('/getToken/',controllerMoloni.getToken);
- app.post('/getFornecedor/',controllerMoloni.getFornecedor);
+ app.post('/vamos/', controllerMoloni.obterToken);
+ app.post('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
  
 
  //Hubspot
-
+ //app.post('/hubspotGetToken/', controllerHubspot.obterTokenHubspot);
 
 //Verify if a user is logged in
 function isLoggedIn(req, res, next) {

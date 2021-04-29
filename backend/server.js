@@ -56,7 +56,7 @@ const authUrl =
 app.get('/', (req, res) => {
     return res.redirect(authUrl);
 })
-
+*/
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -68,7 +68,7 @@ app.use((req, res, next) => {
         return res.status(200).json({});
     }
     next();
-});*/
+});
 
 //express-sessions code
 module.exports = app;
