@@ -78,7 +78,7 @@ app.get('/', function(req, res) {
 
  //Moloni
  app.post('/vamos/', controllerMoloni.obterToken);
- app.post('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
+ app.get('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
  
 
  //Hubspot

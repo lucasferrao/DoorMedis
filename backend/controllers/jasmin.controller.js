@@ -36,8 +36,8 @@ function obterTokenJasmin() {
     };
 
     var form = {
-      "client_id": "DOORMEDIS",
-      "client_secret": "543a8ef4-bba9-46e8-84cb-6c14501b8496",
+      "client_id": "DOORMEDIS21",
+      "client_secret": "ad052a3b-3092-4fc1-bb9c-1135c1c9a514",
       "grant_type": "client_credentials",
       "scope": "application",
     };

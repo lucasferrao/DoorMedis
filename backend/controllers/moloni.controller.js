@@ -22,7 +22,7 @@ function obterFornecedor() {
     obterToken();
     console.log("foi buscar o access_token");
     var options = {
-        method: 'POST',
+        method: 'GET',
         url: 'https://api.moloni.pt/v1/suppliers/getAll',
         qs: { access_token: '' + moloni_access_token },
         headers: {
