@@ -2,6 +2,7 @@
 //app require
 const app = require('../server');
 const auth = require("../middleware/auth");
+
 //Evoke all needed controllers
 const controllerCliente = 
     require('../controllers/cliente.controller.js');
@@ -22,7 +23,7 @@ const controllerMoloni =
 const controllerHubspot = 
     require('../controllers/hubspot.controller.js');    
 
-    //Default route
+//Default route
 app.get('/', function(req, res) {
     res.send("DoorMedis");
     res.end();
@@ -72,21 +73,17 @@ app.get('/', function(req, res) {
  app.put('/stocks/:id', controllerStock.update);
 
  //Jasmin
- app.post('/jasminGetToken/', controllerJasmin.obterTokenJasmin);
- //app.post('/jasminArtigosInventario/', controllerJasmin.obterArtigosInventario);
+ app.get('/jasminArtigosInventario/', controllerJasmin.obterArtigosInventario);
+ app.get('/jasminListaEncomendas/', controllerJasmin.obterListaEncomendas);
+ app.get('/jasminProdutosFarmacia/', controllerJasmin.obterProdutosFarmacia);
 
 
  //Moloni
- app.post('/vamos/', controllerMoloni.obterToken);
-<<<<<<< HEAD
- app.get('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
- 
-=======
+ app.post('/moloniGetToken/', controllerMoloni.obterToken);
  app.post('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
  app.post('/moloniGetProdutos/', controllerMoloni.obterProdutos);
  app.post('/moloniGetPedidoEncomenda/', controllerMoloni.obterPedidoEncomenda);
  app.post('/novaEncomenda/', controllerMoloni.novaEncomenda);
->>>>>>> e24b3c5fe6678c7c9599b701ecbe5b6f838a1484
 
  //Hubspot
  //app.post('/hubspotGetToken/', controllerHubspot.obterTokenHubspot);

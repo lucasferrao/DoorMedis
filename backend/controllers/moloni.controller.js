@@ -26,14 +26,8 @@ function obterFornecedor() {
     obterToken();
     console.log("foi buscar o access_token");
     var options = {
-<<<<<<< HEAD
-        method: 'GET',
-        url: 'https://api.moloni.pt/v1/suppliers/getAll',
-        qs: { access_token: '' + moloni_access_token },
-=======
         method: 'POST',
         url: 'https://api.moloni.pt/v1/suppliers/getAll/?access_token=' + moloni_access_token,
->>>>>>> e24b3c5fe6678c7c9599b701ecbe5b6f838a1484
         headers: {
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded'
@@ -103,7 +97,7 @@ function obterPedidoEncomenda() {
     });
 }
 async function novaEncomenda(encomenda) {
-    let token = await obterToken();
+    obterToken();
     var options = {
         method: 'POST',
         url: 'https://api.moloni.pt/v1/supplierPurchaseOrder/insert/?access_token=' + moloni_access_token,
