@@ -11,8 +11,8 @@ function obterToken(cb) {
       url: "https://identity.primaverabss.com/core/connect/token",
       method: "POST",
       auth: {
-        user: "DOORMEDIS21",
-        pass: "a99834c0-bc1b-4d06-94e4-acbc0c7309c0",
+        user: "DOORMEDIS",
+        pass: "796d2366-05f9-489c-b11d-8af6fec75a7e",
       },
       form: {
         grant_type: "client_credentials",
@@ -39,7 +39,7 @@ function obterArtigosInventario(req, res) {
     if (token) {
       let options = {
         method: 'GET',
-        url: "https://my.jasminsoftware.com/252922/252922-0001/materialsCore/materialsItems",
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/materialsCore/materialsItems",
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ function obterListaEncomendas(req, res) {
     if (token) {
       let options = {
         method: 'GET',
-        url: "https://my.jasminsoftware.com/252922/252922-0001/shipping/deliveries",
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/shipping/deliveries",
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ function obterProdutosFarmacia(req, res) {
     if (token) {
       let options = {
         method: 'GET',
-        url: "https://my.jasminsoftware.com/252922/252922-0001/salesCore/salesItems",
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/salesCore/salesItems",
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
