@@ -57,6 +57,7 @@ app.get('/', (req, res) => {
     return res.redirect(authUrl);
 })
 */
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(

@@ -26,8 +26,8 @@ function obterToken(cb) {
       url: "https://identity.primaverabss.com/core/connect/token",
       method: "POST",
       auth: {
-        user: "DOORMEDIS21",
-        pass: "2ffdff71-9d70-46be-91e1-04293e38dd9e",
+        user: "DOORMEDIS",
+        pass: "796d2366-05f9-489c-b11d-8af6fec75a7e",
       },
       form: {
         grant_type: "client_credentials",
@@ -36,8 +36,13 @@ function obterToken(cb) {
     },
     function (err, res) {
       if (res) {
+
         const json = JSON.parse(res.body);
         cb(json.access_token);
+    console.log("AAAAAAAAAAAAAAA");
+
+        jasmin_access_token = json.access_token;
+        console.log(jasmin_access_token);
       } else {
         console.log("Could not obtain acess token.");
         cb(false);
@@ -71,14 +76,14 @@ function obterToken(cb) {
   jasmin_refresh_token = json[0]["refresh_token"];
   console.log("jasmin_access_token: " + jasmin_access_token + " jasmin_refresh_token: " + jasmin_refresh_token);
 }*/
-//Artigos de inventário [ https://my.jasminsoftware.com/252922/252922-0001/#/materialscore/materialsItems/list?listname=MaterialsItems ]
+//Artigos de inventário [ https://my.jasminsoftware.com/253324/253324-0001/#/materialscore/materialsItems/list?listname=MaterialsItems ]
 function obterArtigosInventario(req, res) {
   obterToken(function (token) {
     console.log(token);
     if (token) {
       let options = {
         method: 'GET',
-        url: "https://my.jasminsoftware.com/api/252922/252922-0001/materialsCore/materialsItems",
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/materialsCore/materialsItems",
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

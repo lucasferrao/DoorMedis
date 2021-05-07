@@ -8,5 +8,4 @@ var moloni = new Moloni({
 
 module.exports = {
     moloni: moloni
-
 }
