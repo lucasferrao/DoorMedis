@@ -12,15 +12,20 @@
   "author": "lucasferrao",
   "license": "ISC",
   "dependencies": {
+    "callback": "0.0.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
+    "moloni": "0.0.10",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.1",
+    "promise": "^8.1.0",
+    "querystring": "^0.2.1",
     "request": "^2.88.2",
+    "response": "^0.18.0",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {}

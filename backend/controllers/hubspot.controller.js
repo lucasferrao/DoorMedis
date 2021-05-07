@@ -16,8 +16,8 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
-
-function obterTokenHubspot() {
+*/
+/*function obterTokenHubspot() {
   var url = 'https://api.hubapi.com/oauth/v1/token';
     var headers = {
       "Accept": "application/json"
@@ -39,6 +39,7 @@ hubspot_access_token = json[0]["access_token"];
 hubspot_refresh_token = json[0]["refresh_token"];
 console.log("hubspot_access_token: " + hubspot_access_token + " hubspot_refresh_token: " + hubspot_refresh_token);
 
+*/
 
 // Build the auth URL
 const authUrl =
@@ -54,7 +55,7 @@ const authUrl =
   if (req.query.code) {
     // Handle the received code
   }
-});
+});*/
 const formData = {
   grant_type: 'authorization_code',
   client_id: "976f1267-3d7f-410a-9d58-cfa936c727ad",
@@ -67,6 +68,7 @@ request.post('https://api.hubapi.com/oauth/v1/token', { form: formData }, (err, 
   // Handle the returned tokens
 });
 
+/*
 module.exports = {
     //obterTokenHubspot: obterTokenHubspot,
   }*/
