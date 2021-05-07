@@ -20,6 +20,8 @@ app.get('/', function(req, res) {
  //Jasmin
  app.post('/jasminGetToken/', controllerJasmin.obterToken);
  app.get('/jasminArtigosInventario/', controllerJasmin.obterArtigosInventario);
+ app.get('/jasminListaEncomendas/', controllerJasmin.obterListaEncomendas);
+ app.get('/jasminProdutosFarmacia/', controllerJasmin.obterProdutosFarmacia);
 
 
  //Moloni
@@ -33,6 +35,7 @@ app.get('/', function(req, res) {
  app.post('/putEncomenda/', controllerMoloni.putEncomendas);
  app.post('/novoProduto/', controllerMoloni.novoProduto);
  app.post('/novoProduto/', controllerMoloni.putProduto);
+ 
  
  //app.post('/novaProduto/', controllerMoloni.inserirProduto);
  

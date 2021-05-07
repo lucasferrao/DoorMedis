@@ -100,8 +100,59 @@ function obterArtigosInventario(req, res) {
   });
 }
 
+/**
+ * Lista de encomendas relativa ao cliente
+ * @param {*} req 
+ * @param {*} res 
+ */
+function obterListaEncomendas(req, res) {
+  obterToken(function (token) {
+    console.log(token);
+    if (token) {
+      let options = {
+        method: 'GET',
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/shipping/deliveries",
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+      request(options, function (error, response, body) {
+        console.log(response.statusCode)
+        res.send(JSON.parse(body));
+      })
+    } else {
+      res.send("erro");
+    }
+  });
+}
+
+function obterProdutosFarmacia(req, res) {
+  obterToken(function (token) {
+    console.log(token);
+    if (token) {
+      let options = {
+        method: 'GET',
+        url: "https://my.jasminsoftware.com/api/253324/253324-0001/salesCore/salesItems",
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+      request(options, function (error, response, body) {
+        console.log(response.statusCode)
+        res.send(JSON.parse(body));
+      })
+    } else {
+      res.send("erro");
+    }
+  });
+}
+
 
 module.exports = {
   obterToken: obterToken,
   obterArtigosInventario: obterArtigosInventario,
+  obterListaEncomendas: obterListaEncomendas,
+  obterProdutosFarmacia: obterProdutosFarmacia
 };
