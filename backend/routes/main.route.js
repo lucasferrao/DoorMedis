@@ -26,15 +26,15 @@ app.get('/', function(req, res) {
 
  //Moloni
  app.get('/vamos/', controllerMoloni.obterToken);
- app.post('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
- app.post('/moloniGetProdutos/', controllerMoloni.obterProdutos);
- app.post('/moloniGetCategoriasProdutos/', controllerMoloni.obterCategorias);
- app.post('/moloniGetPedidoEncomenda/', controllerMoloni.obterPedidoEncomenda);
- app.post('/moloniGetProdutosCategoria/', controllerMoloni.obterProdutosCategoria);
+ app.get('/moloniGetFornecedor/', controllerMoloni.obterFornecedor);
+ app.get('/moloniGetProdutos/', controllerMoloni.obterProdutos);
+ app.get('/moloniGetCategoriasProdutos/', controllerMoloni.obterCategorias);
+ app.get('/moloniGetPedidoEncomenda/', controllerMoloni.obterPedidoEncomenda);
+ app.get('/moloniGetProdutosCategoria/', controllerMoloni.obterProdutosCategoria);
  app.post('/novaEncomenda/', controllerMoloni.novaEncomenda);
- app.post('/putEncomenda/', controllerMoloni.putEncomendas);
+ app.put('/putEncomenda/', controllerMoloni.putEncomendas);
  app.post('/novoProduto/', controllerMoloni.novoProduto);
- app.post('/novoProduto/', controllerMoloni.putProduto);
+ app.put('/novoProduto/', controllerMoloni.putProduto);
  
  
  //app.post('/novaProduto/', controllerMoloni.inserirProduto);

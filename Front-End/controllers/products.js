@@ -2,9 +2,9 @@
 //quando inicia a página faz
 function demonstracaoProduto() {
     async function fetchAsync() {
-        const mostraProdutos = document.getElementById("produtoTBody");
+        const mostraProdutos = document.getElementById("tableProducts");
         let txt = "";
-        const response = await fetch('http://localhost:8080/moloniGetProdutos/');
+        const response = await fetch('http://127.0.0.1:8080/moloniGetProdutos/');
         const Produtos = await response.json();
         //percorrer a variável users e por cada user cria a linha da tabela com os dados presentes
         let i = 0;
@@ -29,7 +29,8 @@ function demonstracaoProduto() {
     fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
 }
 
-function createList() {
+
+/*function createList() {
     var productTable = document.getElementById('tableProducts');
 
     let array = [];
@@ -52,11 +53,12 @@ function createList() {
     }
     localStorage.setItem('listaCompras', JSON.stringify(array));
     window.location.assign("../tables.html");
-}
-
+    
+}*/
 
 window.onload = function () {
     //chama a função para atualizar os users
     demonstracaoProduto(); //adicionar função de validação ao formulário
+
 
 };
