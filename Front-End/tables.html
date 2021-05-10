@@ -104,17 +104,21 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Produtos Disponíveis</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
                 </div>
                 <div class="card-body">
-                  <div>
-
-                    <div class="form-group">
-                      <select onchange="demonstracaoProduto()" id="category_id" class="form-control border-input">
-                      </select>
-                    </div>
-
-                </div>
+                <div class="container">
+                  <div class="card-header">
+                    <h4 class="card-title">Categoria</h4>
+                  </div>
+                    <form id="formNovoProduto" name="formNovoProduto" action="">
+                      <div class="form-group">
+                        <select onchange="demonstracaoProduto()" id="category_id" class="form-control border-input">
+                        </select>
+                      </div>
+                    </form>
+                  </div>
+                  
+                    <div>
                   <div class="table-responsive">
                     <table class="table" id="tableProducts">
                       <thead class=" text-primary">
