@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dashboard- DoorMedis</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="assets/css/_main-sidebar.scss" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <div class="sidebar" data-color="green" data-background-color="white">
+        <div class="logo">
+          <a href="template.html" class="simple-text logo-mini"><img src="images/logo.png"
+              class="logo-mini">Farmácia</a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item has-treeview ">
+              <a href="#" class="nav-link">
+                <i class="material-icons">dashboard</i>
+                <p>Inventário</p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="categoryTable.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Visualizar Categorias</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="productTable.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Visualizar Produtos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="newProduct.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Adicionar Produto</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="changeProduct.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Gerir Produto</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-treeview ">
+              <a href="#" class="nav-link">
+                <i class="material-icons">dashboard</i>
+                <p>Encomendas</p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="orderTable.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Visualizar Encomendas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="newOrder.html" class="nav-link">
+                    <i class="material-icons">content_paste</i>
+                    <p>Realizar Nova Encomenda</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Encomendas</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Log out</a>
+              </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Vizualização de Produto</h4>
+                </div>
+                <div class="card-header">
+                  <form class="card-tools navbar-search">
+                    <div class="input-group input-group-sm">
+                      <input type="text" id="searchEncomenda" class="form-control" placeholder="Procurar" onkeyup="myFunction()">
+                      <div class="input-group-append">
+                      <button type="search" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                      </button>
+                    </div>
+                    </div>
+                  </form>
+                  <button id="myBtn" type="submit" class="btn btn-info float-right">Encomendar</button>
+                </div>
+                <div class="card-body">
+                  <table>
+                    <div class="table-responsive">
+                      <table class="table" id="tableProducts">
+                        <thead class=" text-primary">
+                          <tr>
+                            <th style="display:none">Id</th>
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Descrição</th>
+                            <th>Referência</th>
+                            <th>Stock Existente</th>
+                            <th>Stock Minimo</th>
+                            <th>Quantidade a Encomendar</th>
+                          </tr>
+                        </thead>
+                        <tbody id="encomendaTBody">
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href=#>
+                  DoorMedis
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>DoorMedis
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!--   Core JS Files   -->
+  <script src="../Front-End/controllers/products.js"></script>
+  <script src="../Front-End/controllers/category.js"></script>
+  <script src="../Front-End/controllers/order.js"></script>
+  <script src="../Front-End/assets/js/core/jquery.min.js"></script>
+  <script src="../Front-End/assets/js/core/popper.min.js"></script>
+  <script src="../Front-End/assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="../Front-End/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+
+  <script>
+
+    $(document).ready(function () {
+      // Write on keyup event of keyword input element
+      $("#searchEncomenda").keyup(function () {
+        // When value of the input is not blank
+        if ($(this).val() != "") {
+          // Show only matching TR, hide rest of them
+          $("#tableProducts tbody>tr").hide();
+          $("#tableProducts td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+        }
+        else {
+          // When there is no input or clean again, show everything back
+          $("#tableProducts tbody>tr").show();
+        }
+      });
+    });
+    // jQuery expression for case-insensitive filter
+    $.extend($.expr[":"],
+      {
+        "contains-ci": function (elem, i, match, array) {
+          return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+        }
+      });
+  </script>
+
+</body>
+
+</html>
