@@ -2324,16 +2324,25 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  padding: 0.4375rem 0;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
   color: #495057;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #d2d2d2;
-  border-radius: 0;
-  box-shadow: none;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  box-shadow: inset 0 0 0 transparent;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .form-control::-ms-expand {
@@ -9556,6 +9565,13 @@ a.text-dark:focus {
   box-shadow: 0 2px 2px 0 rgba(250, 250, 250, 0.14), 0 3px 1px -2px rgba(250, 250, 250, 0.2), 0 1px 5px 0 rgba(250, 250, 250, 0.12);
 }
 
+.btn.btn-danger {
+  color: #ffffff;
+  background-color: #f55145;
+  border-color: #ccc;
+  box-shadow: 0 2px 2px 0 rgba(250, 250, 250, 0.14), 0 3px 1px -2px rgba(250, 250, 250, 0.2), 0 1px 5px 0 rgba(250, 250, 250, 0.12);
+}
+
 .btn.btn-secondary:hover {
   color: #333333;
   background-color: #f2f2f2;
@@ -9641,23 +9657,23 @@ a.text-dark:focus {
 
 .btn.btn-info {
   color: #fff;
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #55b559;
+  border-color: #55b559;
   box-shadow: 0 2px 2px 0 rgba(0, 188, 212, 0.14), 0 3px 1px -2px rgba(0, 188, 212, 0.2), 0 1px 5px 0 rgba(0, 188, 212, 0.12);
 }
 
 .btn.btn-info:hover {
   color: #fff;
-  background-color: #00aec5;
-  border-color: #008697;
+  background-color: #4cb150;
+  border-color: #4cb150;
 }
 
 .btn.btn-info:focus,
 .btn.btn-info.focus,
 .btn.btn-info:hover {
   color: #fff;
-  background-color: #00aec5;
-  border-color: #008697;
+  background-color: #4cb150;
+  border-color: #4cb150;
 }
 
 .btn.btn-info:active,
@@ -12043,7 +12059,7 @@ fieldset[disabled] .is-focused .switch label:focus {
 
 .form-control,
 .is-focused .form-control {
-  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  background-image: linear-gradient(to top, #005D2E 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
 .form-control:invalid {
@@ -15283,13 +15299,13 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li .dropdown-menu a:focus,
 .sidebar .nav li.active>[data-toggle="collapse"] {
-  background-color: rgba(200, 200, 200, 0.2);
-  color: #3C4858;
+  background-color: #005D2E;
+  color: #ffffff;
   box-shadow: none;
 }
 
 .sidebar .nav li.active>[data-toggle="collapse"] i {
-  color: #a9afbb;
+  color: #ffffff;
 }
 
 .sidebar .nav li.active>a,
@@ -17030,7 +17046,7 @@ a .material-icons {
 label {
   font-size: 14px;
   line-height: 1.42857;
-  color: #AAAAAA;
+  color: #000000;
   font-weight: 400;
 }
 

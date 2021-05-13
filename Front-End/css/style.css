@@ -2190,7 +2190,7 @@
  .new-account-login h5 {
      font-size: 18px;
      color: #1111111;
-     font-weight: 600;
+     font: weight 600px;;
 }
  .new-account-login h5 a:hover{
      color: #005D2E;
@@ -2598,7 +2598,15 @@
 	border: none;
 }
 
-
+.sidebar .nav-item .collapse .collapse-inner .collapse-header, .sidebar .nav-item .collapsing .collapse-inner .collapse-header {
+    margin: 0;
+    white-space: nowrap;
+    padding: .5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.65rem;
+    color: #b7b9cc;
+}
 
 
 

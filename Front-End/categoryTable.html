@@ -1,14 +1,4 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,39 +16,54 @@ The above copyright notice and this permission notice shall be included in all c
   </head>
   
   <body>
-    <div class="wrapper ">
+    <div class="wrapper">
       <div class="sidebar" data-color="green" data-background-color="white">
-        <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-  
-        Tip 2: you can also add an image using data-image tag
-    -->
         <div class="logo">
-          <a ></a>
-          <a href="template.html" class="simple-text logo-mini" ><img src="images/logo.png" class="logo-mini">Fornecedor</a>
+          <a href="template.html" class="simple-text logo-mini" ><img src="images/logo.png" class="logo-mini">Farmácia</a>
         </div>
         <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li class="nav-item active  ">
-              <a class="nav-link" href="#0">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
-              </a>
-            </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="./tables.html">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
-            </a>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item has-treeview ">
+                <a class="nav-link" href="#">
+                  <i class="material-icons">dashboard</i>
+                  <p>Inventário</p>
+                </a>
+                <li class="nav nav-treeview">
+                    <a href="categoryTable.html" class="nav-link">
+                      <i class="material-icons">content_paste</i>
+                      <p>Visualizar Categorias</p>
+                    </a>
+                  </li>
+                  <li class="nav nav-treeview">
+                    <a href="productTable.html" class="nav-link">
+                      <i class="material-icons">content_paste</i>
+                      <p>Visualizar Produtos</p>
+                    </a>
+                  </li>
+                  <li class="nav nav-treeview">
+                    <a href="newProduct.html" class="nav-link">
+                      <i class="material-icons">content_paste</i>
+                      <p>Adicionar Produto</p>
+                    </a>
+                  </li>
+                  <li class="nav nav-treeview">
+                    <a href="changeProduct.html" class="nav-link">
+                      <i class="material-icons">content_paste</i>
+                      <p>Gerir Produto</p>
+                    </a>
+                  </li>
+                 </ul>
+              </li>
         </ul>
       </div>
     </div>
+ 
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Table List</a>
+            <a class="navbar-brand" href="javascript:;">Inventário</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -96,6 +101,7 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </nav>
+    
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
@@ -103,51 +109,36 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Produtos Disponíveis</h4>
+                  <h4 class="card-title ">Vizualização de Categorias</h4>
                 </div>
                 <div class="card-body">
-                <div class="container">
-                  <div class="card-header">
-                    <h4 class="card-title">Categoria</h4>
-                  </div>
-                    <form id="formNovoProduto" name="formNovoProduto" action="">
-                      <div class="form-group">
-                        <select onchange="demonstracaoProduto()" id="category_id" class="form-control border-input">
-                        </select>
-                      </div>
-                    </form>
-                  </div>
+                  <div class="site-section" id="section-produtos">
+                    <div class="container">
+                        <table>
+                          <div class="table-responsive">
+                          <table class="table" id="tableProducts">
+                            <thead class=" text-primary">
+                              <tr>
+                                <th>ID</th>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody id="categoriaTBody">
+                            </tbody>
+                          </table>
+                        </div></table>
                   
-                    <div>
-                  <div class="table-responsive">
-                    <table class="table" id="tableProducts">
-                      <thead class=" text-primary">
-                        <th></th>
-                      <th>Id</th>
-                      <th>Produto</th>
-                      <th>Descrição</th>
-                      <th>Referência</th>
-                      <th>Preço Unitário</th>
-                      <th>Quantidade</th>
-                        <!--<th>Designação</th>
-                        <th>Referência</th>
-                        <th>Preço Sem IVA</th>
-                        <th>Valor IVA</th>
-                        <th>Preço Com Impostos</th>
-                        <th>Stock</th>
-                        <th>Unidade</th>
-                        <th>Realizar Pedido</th>-->
-                      </thead>
-                      <tbody id="produtoTBody">
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+        </div>
+  
+
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -172,6 +163,7 @@ The above copyright notice and this permission notice shall be included in all c
  
   <!--   Core JS Files   -->
   <script src="../Front-End/controllers/products.js"></script>
+  <script src="../Front-End/controllers/category.js"></script>
   <script src="../Front-End/assets/js/core/jquery.min.js"></script>
   <script src="../Front-End/assets/js/core/popper.min.js"></script>
   <script src="../Front-End/assets/js/core/bootstrap-material-design.min.js"></script>

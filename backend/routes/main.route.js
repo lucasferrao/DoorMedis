@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
  app.get('/moloniGetProdutos/', controllerMoloni.obterProdutos);
  app.get('/moloniGetCategoriasProdutos/', controllerMoloni.obterCategorias);
  app.get('/moloniGetPedidoEncomenda/', controllerMoloni.obterPedidoEncomenda);
- app.get('/moloniGetProdutosCategoria/', controllerMoloni.obterProdutosCategoria);
+ app.post('/moloniGetProdutosCategoria/', controllerMoloni.obterProdutosCategoria);
  app.post('/novaEncomenda/', controllerMoloni.novaEncomenda);
  app.put('/putEncomenda/', controllerMoloni.putEncomendas);
  app.post('/novoProduto/', controllerMoloni.novoProduto);

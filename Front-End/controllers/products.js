@@ -2,7 +2,7 @@
 //quando inicia a página faz
 function demonstracaoProduto() {
     async function fetchAsync() {
-        const mostraProdutos = document.getElementById("tableProducts");
+        const mostraProdutos = document.getElementById("produtoTBody");
         let txt = "";
         const response = await fetch('http://127.0.0.1:8080/moloniGetProdutos/');
         const Produtos = await response.json();
@@ -10,17 +10,16 @@ function demonstracaoProduto() {
         let i = 0;
         for (const Produto of Produtos) {
             txt += `<tr>
-            <td>
-            <input type="checkbox" name="produtos" value="${Produto.reference}">
-            </td>
-            <td>${Produto.product_id}</td>   
+            <td>${Produto.product_id}</td>
             <td>${Produto.name}</td>                
             <td>${Produto.summary}</td>
             <td>${Produto.reference}</td>
             <td>${Produto.price}</td>
-            <td> <div class="col-sm-3"> <input type="number" id="${Produto.reference}" min="0" class="form-control"></div></td>
+            <td>${Produto.stock}</td>
+            <td>${Produto.minimum_stock}</td>
+            <th><button type="button" class="btn btn- btn-icon pull-right" onclick="editarProduto(${Produto.product_id})"><i class="fas fa-edit"></i></button></th>
+            <th><button type="button" onclick="deleteProduto(${Produto.product_id})" class="btn btn- btn-icon pull-right"><i class="fa fa-trash"></i></button></th>
             </tr>`;
-            i++;
         }
         //envia a tabela construida para a view e mostra no object com ID result
         mostraProdutos.innerHTML = txt;
@@ -28,33 +27,6 @@ function demonstracaoProduto() {
     //chama a função fetchAsync()
     fetchAsync().then(data => console.log("ok")).catch(reason => console.log(reason.message));
 }
-
-
-/*function createList() {
-    var productTable = document.getElementById('tableProducts');
-
-    let array = [];
-    //alert(productTable.rows.length)
-    for (var i = 0; i < productTable.rows.length; i++) {
-        var row = document.getElementsByTagName('tr')[i];
-        var td = row.getElementsByTagName("td");
-        if (td[0] != undefined && td[0].getElementsByTagName('input')[0].checked) {
-            let obj = {
-                product_id: td[1].innerHTML,
-                name: td[2].innerHTML,
-                summary: td[3].innerHTML,
-                reference: td[4].innerHTML,
-                price: td[5].innerHTML,
-                qtd: td[6].getElementsByTagName('input')[0].value
-            }
-            array.push(obj);
-        }
-
-    }
-    localStorage.setItem('listaCompras', JSON.stringify(array));
-    window.location.assign("../tables.html");
-    
-}*/
 
 window.onload = function () {
     //chama a função para atualizar os users
