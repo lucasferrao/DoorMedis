@@ -33,8 +33,8 @@ app.get('/', function(req, res) {
  app.post('/moloniGetProdutosCategoria/', controllerMoloni.obterProdutosCategoria);
  app.post('/novaEncomenda/', controllerMoloni.novaEncomenda);
  app.put('/putEncomenda/', controllerMoloni.putEncomendas);
- app.post('/novoProduto/', controllerMoloni.novoProduto);
- app.put('/novoProduto/', controllerMoloni.putProduto);
+ app.post('/moloniGetNovoProduto/', controllerMoloni.novoProduto);
+ app.put('/putNovoProduto/', controllerMoloni.putProduto);
  
  
  //app.post('/novaProduto/', controllerMoloni.inserirProduto);
